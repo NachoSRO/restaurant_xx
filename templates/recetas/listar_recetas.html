@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static%}
+{% block body %}
+  {% if perms.receta.view_receta %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Recetas Disponibles</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="text-right">
+        <a class="btn btn-info btn-sm" href="{% url 'recetas:crear_recetas' %}">
+          <i class="fas fa-pencil-alt">
+          </i>
+          Crear Recetas
+      </a>
+      </div>
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body pb-0">
+          <div class="row d-flex align-items-stretch">
+            {% for r in recetas %}
+            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+              <div class="card bg-light">
+                <div class="card-header text-muted border-bottom-0">
+                  Ingresada por {{user.nombres}} {{user.apellidos}}
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead" style="text-transform: capitalize"><b>{{r.nombre}}</b></h2>
+                      <br>
+                      <p class="text-muted text-sm"><b>Preparacion: </b></p>
+                      <p class="text-muted text-sm">{{r.descripcion}}</p>
+                      <p class="text-muted text-sm"> Precio : $ {{r.precio}}</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="card-footer">
+                  <div class="text-right">
+                    <a class="btn btn-info btn-sm" href="{% url 'recetas:modificar_recetas' r.id %}">
+                      Editar
+                  </a>
+                  <a class="btn btn-danger btn-sm" href="{% url 'recetas:eliminar_receta' r.id %}">
+                      Eliminar
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  {% endif %}  
+  {% endblock body %}
+
+</html>

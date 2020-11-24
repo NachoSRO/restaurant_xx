@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/datatable/dataTables.bootstrap.min.css' %}">
+{% endblock extra_css %}
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de solicitudes</strong>
+            </div>
+            <div class="text-right">
+                <a class="btn btn-info btn-sm" href="{% url 'productos:registrar_solicitudes' %}">
+                  <i class="fas fa-pencil-alt">
+                  </i>
+                  Crear Solicitudes
+              </a>
+              </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_solicitudes" class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Codigo</th>
+                    <th>Fecha solicitud</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>               
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="creacion" role="dialog">
+
+</div>
+<div class="modal fade" id="edicion" role="dialog">
+
+</div>
+<div class="modal fade" id="eliminacion" role="dialog">
+
+</div>
+{% endblock body %}
+{% block extrajs %}
+<script src="{% static '/lib//plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/solicitudes/index.js' %}"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/data-table/dataTables.bootstrap.min.js' %}"></script>
+{% endblock extrajs %}

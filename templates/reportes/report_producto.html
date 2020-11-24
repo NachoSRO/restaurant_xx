@@ -1,0 +1,211 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/datatable/dataTables.bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> 
+<style>
+    /*estilos para la tabla*/
+table th {
+    background-color: #addd76 !important;
+    color: rgb(0, 0, 0);
+    
+}
+table>tbody>tr>td {
+    vertical-align: middle !important;
+}
+
+/*para alinear los botones y cuadro de busqueda*/
+.btn-group, .btn-group-vertical {
+    position: absolute !important;
+}
+</style>
+{% endblock extra_css %}
+{% block body %}
+<div class="card">
+    <h1 align=center>Reportes</h1>
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de Productos</strong>
+            </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_productos" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Gramaje</th>
+                    <th>Descripcion</th>
+                </tr>
+               
+            </thead>
+            <tbody>    
+                {% for p in productos %}
+                <tr>
+                    <td align=center>{{ p.cod_producto }}</td>
+                    <td align=center>{{ p.name }}</td>
+                    <td align=center>{{ p.tipo }}</td>
+                    <td align=center>{{ p.precio_Compra }}</td>
+                    <td align=center>{{ p.stock }}</td>
+                    <td align=center>{{ p.gramaje }}</td>
+                    <td align=center>{{ p.descripcion }}</td>
+                </tr>
+                {% endfor %}           
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de Usuarios</strong>
+            </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_usuarios" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                </tr>
+               
+            </thead>
+            <tbody>    
+                {% for u in usuarios %}
+                <tr>
+                    <td align=center>{{ u.nombres}}</td>
+                    <td align=center>{{ u.apellidos }}</td>
+                    <td align=center>{{ u.email }}</td>
+                    <td>{{u.rol.rol}}</td>
+                </tr>
+                {% endfor %}           
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de Clientes</strong>
+            </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_clientes" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                </tr>
+               
+            </thead>
+            <tbody>    
+                {% for c in clientes %}
+                <tr>
+                    <td align=center>{{ c.rut}}</td>
+                    <td align=center>{{ c.nombre }}</td>
+                    <td align=center>{{ c.telefono }}</td>
+                </tr>
+                {% endfor %}           
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de Proveedores</strong>
+            </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_proveedores" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+               
+            </thead>
+            <tbody>    
+                {% for pr in proveedores %}
+                <tr>
+                    <td align=center>{{ pr.rut}}</td>
+                    <td align=center>{{ pr.nombre }}</td>
+                    <td align=center>{{ pr.telefono }}</td>
+                    <td align=center>{{ pr.direccion }}</td>
+                </tr>
+                {% endfor %}           
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="card-title">Listado de Mesas</strong>
+            </div>
+        </div>
+        
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table id="tabla_mesas" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Numero de personas</th>
+                    <th>Estado</th>
+                </tr>
+               
+            </thead>
+            <tbody>    
+                {% for m in mesas %}
+                <tr>
+                    <td align=center>{{ m.num_persona}}</td>
+                    <td align=center>{{ m.estado }}</td>
+                </tr>
+                {% endfor %}           
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}
+{% block extrajs %}
+<script src="{% static '/lib//plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static '/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/reportes/report_producto.js' %}"></script>
+<script src="{% static 'js/reportes/report_usuarios.js' %}"></script>
+<script src="{% static 'js/reportes/report_clientes.js' %}"></script>
+<script src="{% static 'js/reportes/report_proveedores.js' %}"></script>
+<script src="{% static 'js/reportes/report_mesas.js' %}"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'datatables/Buttons-1.5.6/js/dataTables.buttons.min.js' %}"></script>  
+<script src="{% static 'datatables/JSZip-2.5.0/jszip.min.js' %}"></script>    
+<script src="{% static 'datatables/pdfmake-0.1.36/pdfmake.min.js' %}"></script>    
+<script src="{% static 'datatables/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+<script src="{% static 'datatables/Buttons-1.5.6/js/buttons.html5.min.js' %}"></script>
+{% endblock extrajs %}
